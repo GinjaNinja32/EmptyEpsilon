@@ -48,3 +48,9 @@ build*/
 _build*/
 cmake/_win32/
 cmake/android/
+
+
+Makefile
+scripts/batteries/
+scripts/gn32/
+scripts/scenario_gn32_*
