@@ -28,6 +28,7 @@ REGISTER_SCRIPT_SUBCLASS(Mine, SpaceObject)
   /// Passes the mine object and the object of the mine's owner/instigator (or nil if there isn't one) to the function.
   /// Example: mine:onDestruction(function(this_mine, instigator) print("Tripped a mine!") end)
   REGISTER_SCRIPT_CLASS_FUNCTION(Mine, onDestruction);
+  REGISTER_SCRIPT_CLASS_FUNCTION(Mine, explode);
 }
 
 REGISTER_MULTIPLAYER_CLASS(Mine, "Mine");

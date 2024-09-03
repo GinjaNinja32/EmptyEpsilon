@@ -41,9 +41,11 @@ REGISTER_SCRIPT_CLASS_NO_CREATE(SpaceObject)
     /// The values are relative x/y coordinates from the SpaceObject's current position (a 2D velocity vector).
     /// Example: vx,vy = obj:getVelocity()
     REGISTER_SCRIPT_CLASS_FUNCTION(Collisionable, getVelocity);
+    REGISTER_SCRIPT_CLASS_FUNCTION(Collisionable, setVelocity);
     /// Returns this SpaceObject's rotational velocity within 2D space, in degrees per second.
     /// Example: obj:getAngularVelocity()
     REGISTER_SCRIPT_CLASS_FUNCTION(Collisionable, getAngularVelocity);
+    REGISTER_SCRIPT_CLASS_FUNCTION(Collisionable, setAngularVelocity);
     /// Sets the faction to which this SpaceObject belongs, by faction name.
     /// Factions are defined by the FactionInfo class, and default factions are defined in scripts/factionInfo.lua.
     /// Requires a faction name string.
