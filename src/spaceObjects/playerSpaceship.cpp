@@ -45,6 +45,7 @@ REGISTER_SCRIPT_SUBCLASS(PlayerSpaceship, SpaceShip)
     /// If a player is in multiple positions, this matches any of their positions and moves that player to all of the same positions on the destination ship.
     /// Example: player:transferPlayersAtPositionToShip("helms",player2) -- transfer all crew on Helms to `player2`
     REGISTER_SCRIPT_CLASS_FUNCTION(PlayerSpaceship, transferPlayersAtPositionToShip);
+    REGISTER_SCRIPT_CLASS_FUNCTION(PlayerSpaceship, transferClientsWithNameToShip);
     /// Returns whether a player occupies the given crew position on this PlayerSpaceship.
     /// Example: player:hasPlayerAtPosition("helms")
     REGISTER_SCRIPT_CLASS_FUNCTION(PlayerSpaceship, hasPlayerAtPosition);
@@ -1192,6 +1193,20 @@ void PlayerSpaceship::transferPlayersAtPositionToShip(ECrewPosition position, P<
     }
 }
 
+void PlayerSpaceship::transferClientsWithNameToShip(string client_name, P<PlayerSpaceship> other_ship)
+{
+    if (!other_ship)
+        return;
+
+    foreach(PlayerInfo, i, player_info_list)
+    {
+        if (i->ship_id == getMultiplayerId() && i->name == client_name)
+        {
+            i->ship_id = other_ship->getMultiplayerId();
+        }
+    }
+}
+
 bool PlayerSpaceship::hasPlayerAtPosition(ECrewPosition position)
 {
     // If a position is occupied by a player, return true.
@@ -1857,8 +1872,18 @@ void PlayerSpaceship::onReceiveClientCommand(int32_t client_id, sp::io::DataBuff
                 {
                     if (csf.type == CustomShipFunction::Type::Button)
                     {
+                        string client_name;
+                        foreach(PlayerInfo, i, player_info_list)
+                        {
+                            if(i->client_id == client_id)
+                            {
+                                client_name = i->name;
+                                break;
+                            }
+                        }
+
                         auto cb = csf.callback;
-                        cb.call<void>();
+                        cb.call<void>(client_name);
                     }
                     else if (csf.type == CustomShipFunction::Type::Message)
                     {

@@ -327,6 +327,7 @@ public:
     // Ship's crew functions
     void transferPlayersToShip(P<PlayerSpaceship> other_ship);
     void transferPlayersAtPositionToShip(ECrewPosition position, P<PlayerSpaceship> other_ship);
+    void transferClientsWithNameToShip(string client_name, P<PlayerSpaceship> other_ship);
     bool hasPlayerAtPosition(ECrewPosition position);
 
     // Ship shields functions
