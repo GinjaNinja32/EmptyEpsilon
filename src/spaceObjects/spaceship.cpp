@@ -409,6 +409,7 @@ REGISTER_SCRIPT_SUBCLASS_NO_CREATE(SpaceShip, ShipTemplateBasedObject)
     /// Sets the time, in seconds, required to load the weapon tube with the given index on this SpaceShip.
     /// Example: ship:setTubeLoadTime(0,12) -- sets the loading time for tube 0 to 12 seconds
     REGISTER_SCRIPT_CLASS_FUNCTION(SpaceShip, setTubeLoadTime);
+    REGISTER_SCRIPT_CLASS_FUNCTION(SpaceShip, onTubeLaunch);
     /// Sets the radar trace image for this SpaceShip.
     /// Valid values are filenames to PNG images relative to the resources/radar/ directory.
     /// Radar trace images should be white with a transparent background.

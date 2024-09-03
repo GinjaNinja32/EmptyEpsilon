@@ -112,6 +112,7 @@ void WeaponTube::fire(float target_angle)
 void WeaponTube::spawnProjectile(float target_angle)
 {
     auto fireLocation = parent->getPosition() + rotateVec2(parent->ship_template->model_data->getTubePosition2D(tube_index), parent->getRotation());
+    P<SpaceObject> m;
     switch(type_loaded)
     {
     case MW_Homing:
@@ -124,6 +125,7 @@ void WeaponTube::spawnProjectile(float target_angle)
             missile->setRotation(parent->getRotation() + direction);
             missile->target_angle = target_angle;
             missile->category_modifier = MissileWeaponData::convertSizeToCategoryModifier(size);
+            m = missile;
         }
         break;
     case MW_Nuke:
@@ -136,6 +138,7 @@ void WeaponTube::spawnProjectile(float target_angle)
             missile->setRotation(parent->getRotation() + direction);
             missile->target_angle = target_angle;
             missile->category_modifier = MissileWeaponData::convertSizeToCategoryModifier(size);
+            m = missile;
         }
         break;
     case MW_Mine:
@@ -146,6 +149,7 @@ void WeaponTube::spawnProjectile(float target_angle)
             missile->setPosition(fireLocation);
             missile->setRotation(parent->getRotation() + direction);
             missile->eject();
+            m = missile;
         }
         break;
     case MW_HVLI:
@@ -157,6 +161,7 @@ void WeaponTube::spawnProjectile(float target_angle)
             missile->setRotation(parent->getRotation() + direction);
             missile->target_angle = parent->getRotation() + direction;
             missile->category_modifier = MissileWeaponData::convertSizeToCategoryModifier(size);
+            m = missile;
         }
         break;
     case MW_EMP:
@@ -169,10 +174,16 @@ void WeaponTube::spawnProjectile(float target_angle)
             missile->setRotation(parent->getRotation() + direction);
             missile->target_angle = target_angle;
             missile->category_modifier = MissileWeaponData::convertSizeToCategoryModifier(size);
+            m = missile;
         }
         break;
     default:
         break;
+    }
+
+    if (m)
+    {
+        parent->on_tube_launch.call<void>(m);
     }
 }
 

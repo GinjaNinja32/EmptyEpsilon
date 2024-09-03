@@ -501,6 +501,12 @@ public:
     EMissileSizes getTubeSize(int index);
     void setTubeLoadTime(int index, float time);
     float getTubeLoadTime(int index);
+    void onTubeLaunch(ScriptSimpleCallback callback)
+    {
+        on_tube_launch = callback;
+    }
+
+    ScriptSimpleCallback on_tube_launch;
 
     void setRadarTrace(string trace) { radar_trace = "radar/" + trace; }
 
