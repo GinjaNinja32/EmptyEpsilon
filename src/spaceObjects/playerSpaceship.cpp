@@ -448,6 +448,17 @@ REGISTER_SCRIPT_SUBCLASS(PlayerSpaceship, SpaceShip)
     /// All SpaceObjects within this radius are dealt damage upon self-destruction.
     /// Example: ship:getSelfDestructSize()
     REGISTER_SCRIPT_CLASS_FUNCTION(PlayerSpaceship, getSelfDestructSize);
+
+    REGISTER_SCRIPT_CLASS_FUNCTION(PlayerSpaceship, getSystemPowerRequest);
+    REGISTER_SCRIPT_CLASS_FUNCTION(PlayerSpaceship, getSystemCoolantRequest);
+    REGISTER_SCRIPT_CLASS_FUNCTION(PlayerSpaceship, getWarpRequest);
+    REGISTER_SCRIPT_CLASS_FUNCTION(PlayerSpaceship, getImpulseRequest);
+    REGISTER_SCRIPT_CLASS_FUNCTION(PlayerSpaceship, getTurnSpeed);
+    REGISTER_SCRIPT_CLASS_FUNCTION(PlayerSpaceship, getTargetRotation);
+    REGISTER_SCRIPT_CLASS_FUNCTION(PlayerSpaceship, getCombatManeuverCharge);
+    REGISTER_SCRIPT_CLASS_FUNCTION(PlayerSpaceship, isTubeLoading);
+    REGISTER_SCRIPT_CLASS_FUNCTION(PlayerSpaceship, isTubeFiring);
+    REGISTER_SCRIPT_CLASS_FUNCTION(PlayerSpaceship, isTubeUnloading);
 }
 
 static const int16_t CMD_TARGET_ROTATION = 0x0001;

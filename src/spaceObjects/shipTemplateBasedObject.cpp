@@ -20,6 +20,7 @@ REGISTER_SCRIPT_SUBCLASS_NO_CREATE(ShipTemplateBasedObject, SpaceObject)
     /// PlayerSpaceship():setTemplate("Phobos M3P")
     /// SpaceStation():setTemplate("Large Station")
     REGISTER_SCRIPT_CLASS_FUNCTION(ShipTemplateBasedObject, setTemplate);
+    REGISTER_SCRIPT_CLASS_FUNCTION(ShipTemplateBasedObject, getTemplate);
     /// [DEPRECATED]
     /// Use ShipTemplateBasedObject:setTemplate().
     REGISTER_SCRIPT_CLASS_FUNCTION(ShipTemplateBasedObject, setShipTemplate);
@@ -462,6 +463,11 @@ void ShipTemplateBasedObject::setTemplate(string template_name)
 
     //Call the virtual applyTemplateValues function so subclasses can get extra values from the ship templates.
     applyTemplateValues();
+}
+
+string ShipTemplateBasedObject::getTemplate()
+{
+    return this->template_name;
 }
 
 void ShipTemplateBasedObject::setShields(const std::vector<float>& amounts)

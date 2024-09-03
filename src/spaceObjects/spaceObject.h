@@ -231,7 +231,9 @@ public:
     static void damageArea(glm::vec2 position, float blast_range, float min_damage, float max_damage, DamageInfo info, float min_range);
 
     bool isEnemy(P<SpaceObject> obj);
+    bool isEnemyToFaction(P<FactionInfo> fac);
     bool isFriendly(P<SpaceObject> obj);
+    bool isFriendlyToFaction(P<FactionInfo> fac);
     void setFaction(string faction_name) { this->faction_id = FactionInfo::findFactionId(faction_name); }
     string getFaction() { if (factionInfo[faction_id]) return factionInfo[this->faction_id]->getName(); return ""; }
     string getLocaleFaction() { if (factionInfo[faction_id]) return factionInfo[this->faction_id]->getLocaleName(); return ""; }

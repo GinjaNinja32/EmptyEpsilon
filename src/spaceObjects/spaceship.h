@@ -273,6 +273,7 @@ public:
      * \param object Object that wants to dock.
      */
     virtual DockStyle canBeDockedBy(P<SpaceObject> obj) override;
+    string getClass();
 
     virtual void collide(Collisionable* other, float force) override;
 
@@ -387,6 +388,8 @@ public:
         impulse_reverse_acceleration = reverse_acceleration.value_or(acceleration);
     }
     void setCombatManeuver(float boost, float strafe) { combat_maneuver_boost_speed = boost; combat_maneuver_strafe_speed = strafe; }
+    float getCombatManeuverBoost() { return combat_maneuver_boost_speed; }
+    float getCombatManeuverStrafe() { return combat_maneuver_strafe_speed; }
     bool hasJumpDrive() { return has_jump_drive; }
     void setJumpDrive(bool has_jump) { has_jump_drive = has_jump; }
     void setJumpDriveRange(float min, float max) { jump_drive_min_distance = min; jump_drive_max_distance = max; }

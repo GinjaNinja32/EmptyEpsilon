@@ -62,6 +62,7 @@ public:
     virtual float getShieldRechargeRate(int shield_index);
 
     void setTemplate(string template_name);
+    string getTemplate();
     void setShipTemplate(string template_name) { LOG(WARNING) << "Deprecated \"setShipTemplate\" function called."; setTemplate(template_name); }
     void setTypeName(string type_name) { this->type_name = type_name; }
     string getTypeName() { return type_name; }

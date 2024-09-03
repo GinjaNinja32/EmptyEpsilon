@@ -345,6 +345,54 @@ public:
 
     // Script export function
     virtual string getExportLine() override;
+
+    float getSystemPowerRequest(ESystem system)
+    {
+        if (system >= SYS_COUNT || system <= SYS_None)
+            return 0.0;
+        return systems[system].power_request;
+    }
+    float getSystemCoolantRequest(ESystem system)
+    {
+        if (system >= SYS_COUNT || system <= SYS_None)
+            return 0.0;
+        return systems[system].coolant_request;
+    }
+
+    int getWarpRequest() {
+        return warp_request;
+    }
+    float getImpulseRequest() {
+        return impulse_request;
+    }
+    float getTurnSpeed() {
+        return turnSpeed;
+    }
+    float getTargetRotation() {
+        return target_rotation;
+    }
+    float getCombatManeuverCharge() {
+        return combat_maneuver_charge;
+    }
+
+    bool isTubeLoading(int index) {
+        if (index < 0 || index >= weapon_tube_count) {
+            return false;
+        }
+        return weapon_tube[index].isLoading();
+    }
+    bool isTubeFiring(int index) {
+        if (index < 0 || index >= weapon_tube_count) {
+            return false;
+        }
+        return weapon_tube[index].isFiring();
+    }
+    bool isTubeUnloading(int index) {
+        if (index < 0 || index >= weapon_tube_count) {
+            return false;
+        }
+        return weapon_tube[index].isUnloading();
+    }
 };
 REGISTER_MULTIPLAYER_ENUM(ECommsState);
 template<> int convert<EAlertLevel>::returnType(lua_State* L, EAlertLevel l);

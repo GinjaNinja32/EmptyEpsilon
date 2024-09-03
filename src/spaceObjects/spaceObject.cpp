@@ -69,11 +69,13 @@ REGISTER_SCRIPT_CLASS_NO_CREATE(SpaceObject)
     /// Returns true if the given SpaceObject's faction is hostile to this object's.
     /// Example: obj:isEnemy(target)
     REGISTER_SCRIPT_CLASS_FUNCTION(SpaceObject, isEnemy);
+    REGISTER_SCRIPT_CLASS_FUNCTION(SpaceObject, isEnemyToFaction);
     /// Returns the friend-or-foe status of the given faction relative to this SpaceObject's faction.
     /// Returns true if the given SpaceObject's faction is friendly to this object's.
     /// If an object is neither friendly nor enemy, it is neutral.
     /// Example: obj:isFriendly(target)
     REGISTER_SCRIPT_CLASS_FUNCTION(SpaceObject, isFriendly);
+    REGISTER_SCRIPT_CLASS_FUNCTION(SpaceObject, isFriendlyToFaction);
     /// Sets the communications script used when this SpaceObject is hailed.
     /// Accepts the filename of a Lua script relative to the scripts/ directory.
     /// If set to an empty string, comms with this object are disabled.
@@ -417,6 +419,27 @@ bool SpaceObject::isEnemy(P<SpaceObject> obj)
     if (obj)
     {
         return FactionInfo::getState(faction_id, obj->faction_id) == FVF_Enemy;
+    } else {
+        return false;
+    }
+}
+
+bool SpaceObject::isEnemyToFaction(P<FactionInfo> fac)
+{
+    if (fac)
+    {
+        return fac->getState(factionInfo[faction_id]) == FVF_Enemy;
+    } else {
+        return false;
+    }
+}
+
+
+bool SpaceObject::isFriendlyToFaction(P<FactionInfo> fac)
+{
+    if (fac)
+    {
+        return fac->getState(factionInfo[faction_id]) == FVF_Friendly;
     } else {
         return false;
     }

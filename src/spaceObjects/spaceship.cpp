@@ -247,6 +247,8 @@ REGISTER_SCRIPT_SUBCLASS_NO_CREATE(SpaceShip, ShipTemplateBasedObject)
     /// The boost value sets the forward maneuver capacity, and the strafe value sets the lateral maneuver capacity.
     /// Example: ship:setCombatManeuver(400,250) -- sets boost capacity to 400 and lateral to 250
     REGISTER_SCRIPT_CLASS_FUNCTION(SpaceShip, setCombatManeuver);
+    REGISTER_SCRIPT_CLASS_FUNCTION(SpaceShip, getCombatManeuverBoost);
+    REGISTER_SCRIPT_CLASS_FUNCTION(SpaceShip, getCombatManeuverStrafe);
     /// Returns whether the SpaceShip has a jump drive.
     /// Example: ship:hasJumpDrive()
     REGISTER_SCRIPT_CLASS_FUNCTION(SpaceShip, hasJumpDrive);
@@ -441,6 +443,8 @@ REGISTER_SCRIPT_SUBCLASS_NO_CREATE(SpaceShip, ShipTemplateBasedObject)
     /// Sets the scan state of this SpaceShip for a given faction.
     /// Example: ship:setScanStateByFaction("Kraylor","fullscan") -- Kraylor faction treats this ship as fully scanned
     REGISTER_SCRIPT_CLASS_FUNCTION(SpaceShip, setScanStateByFaction);
+
+    REGISTER_SCRIPT_CLASS_FUNCTION(SpaceShip, getClass);
 }
 
 std::array<float, SYS_COUNT> SpaceShip::default_system_power_factors{
@@ -1268,6 +1272,11 @@ DockStyle SpaceShip::canBeDockedBy(P<SpaceObject> obj)
     if (ship_template->internal_dock_classes.count(ship->ship_template->getSubClass()) > 0)
         return DockStyle::Internal;
     return DockStyle::None;
+}
+
+string SpaceShip::getClass()
+{
+    return ship_template->getClass();
 }
 
 void SpaceShip::collide(Collisionable* other, float force)
