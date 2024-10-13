@@ -233,6 +233,8 @@ REGISTER_SCRIPT_CLASS_NO_CREATE(SpaceObject)
     /// -- Prints to the console window or logging file when this SpaceObject is destroyed
     /// obj:onDestroyed(function() print("Object destroyed!") end)
     REGISTER_SCRIPT_CLASS_FUNCTION(SpaceObject, onDestroyed);
+
+    REGISTER_SCRIPT_CLASS_FUNCTION(SpaceObject, getRadius);
 }
 
 PVector<SpaceObject> space_object_list;
