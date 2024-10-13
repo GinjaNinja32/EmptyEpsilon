@@ -178,6 +178,10 @@ void ModelData::setCollisionBox(glm::vec2 collision_box)
 {
     this->collision_box = collision_box;
 }
+glm::vec2 ModelData::getCollisionBox()
+{
+    return this->collision_box;
+}
 
 void ModelData::addBeamPosition(glm::vec3 position)
 {

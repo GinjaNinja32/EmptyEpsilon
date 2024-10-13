@@ -179,6 +179,8 @@ REGISTER_SCRIPT_SUBCLASS_NO_CREATE(ShipTemplateBasedObject, SpaceObject)
     /// Passes the object taking damage and the instigator SpaceObject that delivered the destroying damage (or nil) to the function.
     /// Example: stbo:onTakingDamage(function(this_stbo,instigator) print(this_stbo:getCallSign() .. " was destroyed by " .. instigator:getCallSign()) end)
     REGISTER_SCRIPT_CLASS_FUNCTION(ShipTemplateBasedObject, onDestruction);
+
+    REGISTER_SCRIPT_CLASS_FUNCTION(ShipTemplateBasedObject, getCollisionBox);
 }
 
 ShipTemplateBasedObject::ShipTemplateBasedObject(float collision_range, string multiplayer_name, float multiplayer_significant_range)
@@ -518,4 +520,9 @@ string ShipTemplateBasedObject::getShieldDataString()
         data += string(int(shield_level[n])) + "/" + string(int(shield_max[n]));
     }
     return data;
+}
+
+glm::vec2 ShipTemplateBasedObject::getCollisionBox()
+{
+    return this->ship_template->model_data->getCollisionBox();
 }

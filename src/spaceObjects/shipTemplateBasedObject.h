@@ -115,6 +115,8 @@ public:
     void onDestruction(ScriptSimpleCallback callback);
 
     string getShieldDataString();
+
+    glm::vec2 getCollisionBox();
 };
 
 #endif//SHIP_TEMPLATE_BASED_OBJECT_H

@@ -120,6 +120,7 @@ public:
     glm::vec2 getTubePosition2D(int index);
     void setCollisionData(P<SpaceObject> object);
     float getRadius();
+    glm::vec2 getCollisionBox();
 
     void load();
     void render(const glm::mat4& model_matrix);
