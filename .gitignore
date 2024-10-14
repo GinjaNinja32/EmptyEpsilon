@@ -54,3 +54,6 @@ Makefile
 scripts/batteries/
 scripts/gn32/
 scripts/scenario_gn32_*
+scripts/xansta/
+scripts/sandbox
+scripts/scenario_xansta_*
