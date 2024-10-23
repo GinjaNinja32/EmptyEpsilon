@@ -376,23 +376,11 @@ public:
         return combat_maneuver_charge;
     }
 
-    bool isTubeLoading(int index) {
+    EWeaponTubeState getTubeState(int index) {
         if (index < 0 || index >= weapon_tube_count) {
-            return false;
+            return WTS_Empty;
         }
-        return weapon_tube[index].isLoading();
-    }
-    bool isTubeFiring(int index) {
-        if (index < 0 || index >= weapon_tube_count) {
-            return false;
-        }
-        return weapon_tube[index].isFiring();
-    }
-    bool isTubeUnloading(int index) {
-        if (index < 0 || index >= weapon_tube_count) {
-            return false;
-        }
-        return weapon_tube[index].isUnloading();
+        return weapon_tube[index].getState();
     }
 };
 REGISTER_MULTIPLAYER_ENUM(ECommsState);

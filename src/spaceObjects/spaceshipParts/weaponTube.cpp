@@ -426,3 +426,27 @@ EMissileSizes WeaponTube::getSize()
 {
     return size;
 }
+
+template<> int convert<EWeaponTubeState>::returnType(lua_State* L, EWeaponTubeState es)
+{
+    switch(es)
+    {
+    case WTS_Empty:
+        lua_pushstring(L, "empty");
+        return 1;
+    case WTS_Loading:
+        lua_pushstring(L, "loading");
+        return 1;
+    case WTS_Loaded:
+        lua_pushstring(L, "loaded");
+        return 1;
+    case WTS_Unloading:
+        lua_pushstring(L, "unloading");
+        return 1;
+    case WTS_Firing:
+        lua_pushstring(L, "firing");
+        return 1;
+    default:
+        return 0;
+    }
+}

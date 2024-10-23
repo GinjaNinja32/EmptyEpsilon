@@ -15,6 +15,8 @@ enum EWeaponTubeState
     WTS_Firing
 };
 
+template<> int convert<EWeaponTubeState>::returnType(lua_State* L, EWeaponTubeState es);
+
 class WeaponTube : sp::NonCopyable
 {
 public:
@@ -58,6 +60,8 @@ public:
     bool isLoading();
     bool isUnloading();
     bool isFiring();
+
+    EWeaponTubeState getState() { return state; }
 
     float getLoadProgress();
     float getUnloadProgress();

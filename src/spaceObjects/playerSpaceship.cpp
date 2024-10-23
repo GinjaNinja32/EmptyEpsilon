@@ -457,9 +457,7 @@ REGISTER_SCRIPT_SUBCLASS(PlayerSpaceship, SpaceShip)
     REGISTER_SCRIPT_CLASS_FUNCTION(PlayerSpaceship, getTurnSpeed);
     REGISTER_SCRIPT_CLASS_FUNCTION(PlayerSpaceship, getTargetRotation);
     REGISTER_SCRIPT_CLASS_FUNCTION(PlayerSpaceship, getCombatManeuverCharge);
-    REGISTER_SCRIPT_CLASS_FUNCTION(PlayerSpaceship, isTubeLoading);
-    REGISTER_SCRIPT_CLASS_FUNCTION(PlayerSpaceship, isTubeFiring);
-    REGISTER_SCRIPT_CLASS_FUNCTION(PlayerSpaceship, isTubeUnloading);
+    REGISTER_SCRIPT_CLASS_FUNCTION(PlayerSpaceship, getTubeState);
 }
 
 static const int16_t CMD_TARGET_ROTATION = 0x0001;
