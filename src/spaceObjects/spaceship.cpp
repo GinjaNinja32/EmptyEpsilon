@@ -1949,6 +1949,16 @@ float frequencyVsFrequencyDamageFactor(int beam_frequency, int shield_frequency)
     return f1;
 }
 
+int luaFVFDF(lua_State* L)
+{
+    int bf = luaL_checkinteger(L, 1);
+    int sf = luaL_checkinteger(L, 2);
+    lua_pushnumber(L, frequencyVsFrequencyDamageFactor(bf, sf));
+    return 1;
+}
+
+REGISTER_SCRIPT_FUNCTION_NAMED(luaFVFDF, "fvfdf");
+
 string frequencyToString(int frequency)
 {
     return string(400 + (frequency * 20)) + "THz";
