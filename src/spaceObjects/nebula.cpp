@@ -145,6 +145,20 @@ bool Nebula::blockedByNebula(glm::vec2 start, glm::vec2 end, float radar_short_r
     return false;
 }
 
+int luaBlockedByNebula(lua_State* L)
+{
+    float x1 = luaL_checknumber(L, 1);
+    float y1 = luaL_checknumber(L, 2);
+    float x2 = luaL_checknumber(L, 3);
+    float y2 = luaL_checknumber(L, 4);
+    float range = luaL_checknumber(L, 5);
+
+    lua_pushboolean(L, Nebula::blockedByNebula({x1,y1}, {x2,y2}, range));
+    return 1;
+}
+
+REGISTER_SCRIPT_FUNCTION_NAMED(luaBlockedByNebula, "blockedByNebula")
+
 glm::vec2 Nebula::getFirstBlockedPosition(glm::vec2 start, glm::vec2 end)
 {
     auto startEndDiff = end - start;
