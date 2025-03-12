@@ -260,6 +260,7 @@ REGISTER_SCRIPT_SUBCLASS_NO_CREATE(SpaceShip, ShipTemplateBasedObject)
     /// Defaults to (5000,50000) if not set by the ShipTemplate.
     /// Example: ship:setJumpDriveRange(2500,25000) -- sets the minimum jump distance to 2.5U and maximum to 25U
     REGISTER_SCRIPT_CLASS_FUNCTION(SpaceShip, setJumpDriveRange);
+    REGISTER_SCRIPT_CLASS_FUNCTION(SpaceShip, getJumpDriveRange);
     /// Sets this SpaceShip's current jump drive charge.
     /// Jumping depletes the ship's jump drive charge by a value equal to the distance jumped.
     /// For example, a 5U jump depletes the charge by 5000.
@@ -446,6 +447,8 @@ REGISTER_SCRIPT_SUBCLASS_NO_CREATE(SpaceShip, ShipTemplateBasedObject)
     REGISTER_SCRIPT_CLASS_FUNCTION(SpaceShip, setScanStateByFaction);
 
     REGISTER_SCRIPT_CLASS_FUNCTION(SpaceShip, getClass);
+    REGISTER_SCRIPT_CLASS_FUNCTION(SpaceShip, getCurrentImpulse);
+    REGISTER_SCRIPT_CLASS_FUNCTION(SpaceShip, getCurrentWarp);
 }
 
 std::array<float, SYS_COUNT> SpaceShip::default_system_power_factors{
