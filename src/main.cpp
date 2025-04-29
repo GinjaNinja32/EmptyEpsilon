@@ -480,12 +480,24 @@ void returnToMainMenu(RenderLayer* render_layer)
         if (PreferencesManager::get("startpaused") != "1")
             engine->setGameSpeed(1.0);
     }
-    else if (PreferencesManager::get("autoconnect").toInt())
+    else if (PreferencesManager::get("autoconnect") != "")
     {
-        int crew_position = PreferencesManager::get("autoconnect").toInt() - 1;
-        if (crew_position < 0) crew_position = 0;
-        if (crew_position > max_crew_positions) crew_position = max_crew_positions;
-        new AutoConnectScreen(ECrewPosition(crew_position), PreferencesManager::get("autocontrolmainscreen").toInt(), PreferencesManager::get("autoconnectship", "solo"));
+        string val = PreferencesManager::get("autoconnect");
+        ECrewPosition target;
+
+        int int_val = val.toInt();
+        if (int_val) {
+            int_val--;
+            if (int_val < 0) int_val = 0;
+            if (int_val > max_crew_positions) int_val = max_crew_positions;
+            target = ECrewPosition(int_val);
+
+        } else if (!tryParseCrewPosition(val, target)) {
+            LOG(ERROR) << "Unknown crew position " << val;
+            exit(2);
+        }
+
+        new AutoConnectScreen(target, PreferencesManager::get("autocontrolmainscreen").toInt(), PreferencesManager::get("autoconnectship", "solo"));
     }
     else if (PreferencesManager::get("tutorial").toInt())
     {

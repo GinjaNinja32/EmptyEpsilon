@@ -292,11 +292,7 @@ string getCrewPositionIcon(ECrewPosition position)
     }
 }
 
-/* Define script conversion function for the ECrewPosition enum. */
-template<> void convert<ECrewPosition>::param(lua_State* L, int& idx, ECrewPosition& cp)
-{
-    string str = string(luaL_checkstring(L, idx++)).lower();
-
+bool tryParseCrewPosition(string str, ECrewPosition& cp) {
     //6/5 player crew
     if (str == "helms" || str == "helmsofficer")
         cp = helmsOfficer;
@@ -335,5 +331,16 @@ template<> void convert<ECrewPosition>::param(lua_State* L, int& idx, ECrewPosit
     else if (str == "shiplog")
         cp = shipLog;
     else
+        return false;
+
+    return true;
+}
+
+/* Define script conversion function for the ECrewPosition enum. */
+template<> void convert<ECrewPosition>::param(lua_State* L, int& idx, ECrewPosition& cp)
+{
+    string str = string(luaL_checkstring(L, idx++)).lower();
+
+    if (!tryParseCrewPosition(str, cp))
         luaL_error(L, "Unknown value for crew position: %s", str.c_str());
 }

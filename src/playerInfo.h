@@ -66,6 +66,7 @@ public:
 REGISTER_MULTIPLAYER_ENUM(ECrewPosition);
 string getCrewPositionName(ECrewPosition position);
 string getCrewPositionIcon(ECrewPosition position);
+bool tryParseCrewPosition(string input, ECrewPosition& result);
 
 /* Define script conversion function for the DamageInfo structure. */
 template<> void convert<ECrewPosition>::param(lua_State* L, int& idx, ECrewPosition& cp);
