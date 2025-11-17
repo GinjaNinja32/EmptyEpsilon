@@ -311,6 +311,7 @@ REGISTER_SCRIPT_SUBCLASS_NO_CREATE(SpaceShip, ShipTemplateBasedObject)
     /// Example: ship:getBeamWeaponTurretDirection(0); -- returns beam weapon 0's turret direction
     REGISTER_SCRIPT_CLASS_FUNCTION(SpaceShip, getBeamWeaponTurretDirection);
     REGISTER_SCRIPT_CLASS_FUNCTION(SpaceShip, getBeamWeaponTurretRotationRate);
+    REGISTER_SCRIPT_CLASS_FUNCTION(SpaceShip, getBeamWeaponCooldown);
     /// Returns the base firing delay, in seconds, for the BeamWeapon with the given index on this SpaceShip.
     /// Actual cycle time can be modified by "beamweapon" system effectiveness.
     /// Example: ship:getBeamWeaponCycleTime(0); -- returns beam weapon 0's cycle time

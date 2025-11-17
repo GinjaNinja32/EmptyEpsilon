@@ -450,6 +450,7 @@ public:
     float getBeamWeaponDamage(int index) { if (index < 0 || index >= max_beam_weapons) return 0.0; return beam_weapons[index].getDamage(); }
     float getBeamWeaponEnergyPerFire(int index) { if (index < 0 || index >= max_beam_weapons) return 0.0; return beam_weapons[index].getEnergyPerFire(); }
     float getBeamWeaponHeatPerFire(int index) { if (index < 0 || index >= max_beam_weapons) return 0.0; return beam_weapons[index].getHeatPerFire(); }
+    float getBeamWeaponCooldown(int index) { if (index < 0 || index >= max_beam_weapons) return 0.0; return beam_weapons[index].getCooldown(); }
 
     int getShieldsFrequency(){ return shield_frequency; }
     void setShieldsFrequency(int freq) { if ((freq > SpaceShip::max_frequency) || (freq < 0)) return; shield_frequency = freq;}
