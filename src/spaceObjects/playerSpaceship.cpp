@@ -1219,55 +1219,62 @@ bool PlayerSpaceship::hasPlayerAtPosition(ECrewPosition position)
     return false;
 }
 
+PlayerSpaceship::CustomShipFunction* getOrAddCustomFunction(PlayerSpaceship* ship, string name) {
+    for (int i=0; i<(int)ship->custom_functions.size(); i++) {
+        if (ship->custom_functions[i].name == name) {
+            return &ship->custom_functions[i];
+        }
+    }
+
+    ship->custom_functions.emplace_back();
+    return &ship->custom_functions.back();
+}
+
 void PlayerSpaceship::addCustomButton(ECrewPosition position, string name, string caption, ScriptSimpleCallback callback, std::optional<int> order)
 {
-    removeCustom(name);
-    custom_functions.emplace_back();
-    CustomShipFunction& csf = custom_functions.back();
-    csf.type = CustomShipFunction::Type::Button;
-    csf.name = name;
-    csf.crew_position = position;
-    csf.caption = caption;
-    csf.callback = callback;
-    csf.order = order.value_or(0);
+    auto csf = getOrAddCustomFunction(this, name);
+    csf->type = CustomShipFunction::Type::Button;
+    csf->name = name;
+    csf->crew_position = position;
+    csf->caption = caption;
+    csf->callback = callback;
+    csf->order = order.value_or(0);
     std::stable_sort(custom_functions.begin(), custom_functions.end());
 }
 
 void PlayerSpaceship::addCustomInfo(ECrewPosition position, string name, string caption, std::optional<int> order)
 {
-    removeCustom(name);
-    custom_functions.emplace_back();
-    CustomShipFunction& csf = custom_functions.back();
-    csf.type = CustomShipFunction::Type::Info;
-    csf.name = name;
-    csf.crew_position = position;
-    csf.caption = caption;
-    csf.order = order.value_or(0);
+    auto csf = getOrAddCustomFunction(this, name);
+    csf->type = CustomShipFunction::Type::Info;
+    csf->name = name;
+    csf->crew_position = position;
+    csf->caption = caption;
+    csf->callback = {};
+    csf->order = order.value_or(0);
     std::stable_sort(custom_functions.begin(), custom_functions.end());
 }
 
 void PlayerSpaceship::addCustomMessage(ECrewPosition position, string name, string caption)
 {
-    removeCustom(name);
-    custom_functions.emplace_back();
-    CustomShipFunction& csf = custom_functions.back();
-    csf.type = CustomShipFunction::Type::Message;
-    csf.name = name;
-    csf.crew_position = position;
-    csf.caption = caption;
+    auto csf = getOrAddCustomFunction(this, name);
+    csf->type = CustomShipFunction::Type::Message;
+    csf->name = name;
+    csf->crew_position = position;
+    csf->caption = caption;
+    csf->callback = {};
+    csf->order = 0;
     std::stable_sort(custom_functions.begin(), custom_functions.end());
 }
 
 void PlayerSpaceship::addCustomMessageWithCallback(ECrewPosition position, string name, string caption, ScriptSimpleCallback callback)
 {
-    removeCustom(name);
-    custom_functions.emplace_back();
-    CustomShipFunction& csf = custom_functions.back();
-    csf.type = CustomShipFunction::Type::Message;
-    csf.name = name;
-    csf.crew_position = position;
-    csf.caption = caption;
-    csf.callback = callback;
+    auto csf = getOrAddCustomFunction(this, name);
+    csf->type = CustomShipFunction::Type::Message;
+    csf->name = name;
+    csf->crew_position = position;
+    csf->caption = caption;
+    csf->callback = callback;
+    csf->order = 0;
     std::stable_sort(custom_functions.begin(), custom_functions.end());
 }
 
