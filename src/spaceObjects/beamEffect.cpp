@@ -179,7 +179,7 @@ void BeamEffect::update(float delta)
     if (target)
         targetLocation = target->getPosition() + glm::vec2(targetOffset.x, targetOffset.y);
 
-    if (source && delta > 0 && !beam_sound_played)
+    if (source && delta > 0 && beam_fire_sound_power > 0 && !beam_sound_played)
     {
         float volume = 50.0f + (beam_fire_sound_power * 75.0f);
         float pitch = (1.0f / beam_fire_sound_power) + random(-0.1f, 0.1f);
